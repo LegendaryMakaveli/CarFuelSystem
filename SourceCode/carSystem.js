@@ -1,6 +1,6 @@
 let keySwitch = false;
-
 let carFuel = 50;
+let gear = 'P';
 
 function ignition(){
     return keySwitch
@@ -21,4 +21,12 @@ function carTankCapacity(){
     return carFuel
 }
 
-module.exports = {ignition, powerSwith, carTankCapacity};
+function driveCar(driveGear){
+    if(keySwitch == true && driveGear == 'D'){
+        gear = driveGear;
+    }
+    return gear;
+}
+
+
+module.exports = {ignition, powerSwith, carTankCapacity, driveCar};
