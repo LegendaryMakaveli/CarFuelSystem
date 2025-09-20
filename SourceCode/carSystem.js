@@ -1,16 +1,23 @@
 let keySwitch = false;
 let carFuel = 50;
-let gear = 'P';
+let gear = "P";
 
+function setCarFuel(amount) {
+    carFuel = amount;
+}
 function ignition(){
     return keySwitch
 }
 
-function powerSwith() {
-    if(keySwitch == false) {
-        keySwith = true;
-    }else {
-        keySwith = false;
+function powerSwitch() {
+    if (carFuel === 0) {
+        keySwitch = false;
+        return;
+    }
+    if (keySwitch === false) {
+        keySwitch = true;
+    } else {
+        keySwitch = false;
     }
 }
 
@@ -22,11 +29,10 @@ function carTankCapacity(){
 }
 
 function driveCar(driveGear){
-    if(keySwitch == true && driveGear == 'D'){
+    if(keySwitch == true && driveGear == "D"){
         gear = driveGear;
     }
     return gear;
 }
 
-
-module.exports = {ignition, powerSwith, carTankCapacity, driveCar};
+module.exports = {ignition, powerSwitch, carTankCapacity, driveCar, setCarFuel};
