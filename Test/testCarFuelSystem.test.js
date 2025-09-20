@@ -1,4 +1,4 @@
-const {ignition, powerSwith, carTankCapacity, driveCar} = require("../SourceCode/carSystem");
+const {ignition, powerSwitch, carTankCapacity, driveCar, setCarFuel} = require("../SourceCode/carSystem");
 
 describe("Test that my car can be turned on", () => {
     test("test that the ignition is off by default", () => {
@@ -7,14 +7,14 @@ describe("Test that my car can be turned on", () => {
 
     test("test that my car can be turn on", () => {
         expect(ignition()).toBe(false);
-        powerSwith();
-        expect(ignition()).toBe(false);
-        powerSwith();
+        powerSwitch();
+        expect(ignition()).toBe(true);
+        powerSwitch();
     });
 
     test("test that my car can be turned off", () => {
-        powerSwith();
-        powerSwith();
+        powerSwitch();
+        powerSwitch();
         expect(ignition()).toBe(false);
     });
 });
@@ -25,15 +25,23 @@ describe("Test my car tank and its capacity", () => {
     });
 
     test("test thst my car dont start if the fuel is empty", () => {
-        let carFuel = 0
-        powerSwith()
-        expect(ignition()).toBe (false)
+        setCarFuel(0);
+        powerSwitch();
+        expect(ignition()).toBe(false);
+        powerSwitch();
+        setCarFuel(50);
     });
 });
 
 describe("Test that my car default is park and can change", () => {
     test("test that my car default gear is in PARK", () => {
-        powerSwith
+        expect(driveCar("P")).toBe("P")
+    })
+
+    test("test that the gear can be change to Drive", () => {
+        powerSwitch();
+        expect(driveCar("D")).toBe("D");
+        powerSwitch();
     })
 
 });
